@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme, setTheme } from "../../slices";
 import "./Navbar.css";
 
 function Navbar() {
   const [listVisibility, setListVisibility] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTheme(localStorage.getItem("THEME") ?? "dark"));
+  }, [dispatch]);
+
+  const { currTheme } = useSelector((store) => store.theme);
 
   return (
     <>
@@ -30,10 +39,16 @@ function Navbar() {
         </div>
         <nav className="navbar__nav flex--row">
           <ul>
-            <li>
-              <span className="material-icons" title="light-mode">
-                brightness_high
-              </span>
+            <li onClick={() => dispatch(toggleTheme())}>
+              {currTheme === "dark" ? (
+                <span className="material-icons" title="light-mode">
+                  brightness_high
+                </span>
+              ) : (
+                <span className="material-icons" title="light-mode">
+                  dark_mode
+                </span>
+              )}
             </li>
             <li onClick={() => setListVisibility(!listVisibility)}>
               <span className="material-icons account-icon" title="Account">
