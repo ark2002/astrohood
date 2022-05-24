@@ -1,0 +1,36 @@
+.sidebar__container {
+    align-items: flex-start;
+    position: fixed;
+    width: 20%;
+    min-width: 20rem;
+    padding: 2rem 0rem;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+.sidebar__option {
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1rem 1rem 2rem;
+    width: 20rem;
+    color: var(--gray-color);
+}
+
+.sidebar__option:hover {
+    color: var(--black-color);
+    background-color: var(--hover-color);
+}
+
+.sidebar__option--selected {
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1rem 1rem 2rem;
+    width: 20rem;
+    color: var(--black-color);
+    background-color: var(--primary-color);
+}
+
+.sidebar__option-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}

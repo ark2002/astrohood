@@ -10,8 +10,8 @@
 .light {
     --white-color: #ffffff;
     --black-color: #000000;
-    --gray-color: #888888;
-    --primary-color: #3d348b;
+    --gray-color: #515151;
+    --primary-color: #2c94cc;
     --secondary-color: #9393ff;
     --tertiary-color: #f7b801;
     --hover-color: #d4d4ffb6;
@@ -23,9 +23,9 @@
     --black-color: #ffffff;
     --gray-color: #888888;
     --primary-color: #2c94cc;
-    --secondary-color: #b8b8ff;
+    --secondary-color: #c0b8ff;
     --tertiary-color: #BA8AF9;
-    --hover-color: #232346a0;
+    --hover-color: #233446a0;
     --background-color: #202124;
 }
 
@@ -33,4 +33,17 @@
     background-color: var(--background-color);
     color: var(--black-color);
     transition: background-color 1s;
+}
+
+.division__container>.router {
+    margin-left: 25rem;
+    width: 70rem;
+    border-left: 2px solid var(--gray-color);
+    border-right: 2px solid var(--gray-color);
+
+}
+
+.router {
+    min-height: 90vh;
+    padding: 1rem;
 }
