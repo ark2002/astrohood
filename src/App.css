@@ -47,3 +47,9 @@
     min-height: 90vh;
     padding: 1rem;
 }
+
+.toast__style {
+    margin-top: 5rem;
+    font-family: var(--secondary-font);
+    font-size: 1.4rem;
+}
