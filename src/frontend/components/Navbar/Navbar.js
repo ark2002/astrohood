@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme, setTheme } from "../../slices";
+import { toggleTheme, setTheme, signOutHandler } from "../../slices";
 import "./Navbar.css";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [listVisibility, setListVisibility] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setTheme(localStorage.getItem("THEME") ?? "dark"));
   }, [dispatch]);
 
-  const { currTheme } = useSelector((store) => store.theme);
+  const handleSignOut = () => {
+    dispatch(signOutHandler());
+    navigate("/");
+    toast.info("Signed Out !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
+  const { currTheme } = useSelector((store) => store.theme);
+  const { currUser, isAuth } = useSelector((store) => store.auth);
   return (
     <>
       <header className="header flex--row">
@@ -54,18 +70,31 @@ function Navbar() {
               <span className="material-icons account-icon" title="Account">
                 account_circle
               </span>
-              <span className="font__primary text__small">user</span>▼
+              <span className="font__primary text__small">
+                {currUser !== null ? currUser.username : ""}
+              </span>
+              ▼
             </li>
           </ul>
         </nav>
       </header>
-      <div className="dropdown-list secondary__font text__small">
-        {listVisibility && (
-          <NavLink to="/">
-            <li>Log-Out</li>
-          </NavLink>
-        )}
-      </div>
+      {listVisibility &&
+        (!isAuth ? (
+          <div className="dropdown-list secondary__font text__small">
+            <NavLink to="/signin" onClick={() => setListVisibility(false)}>
+              <li>Sign-In</li>
+            </NavLink>
+            <NavLink to="/signup" onClick={() => setListVisibility(false)}>
+              <li>Sign-Up</li>
+            </NavLink>
+          </div>
+        ) : (
+          <div className="dropdown-list secondary__font text__small">
+            <NavLink to="/">
+              <li onClick={() => handleSignOut()}>Log-Out</li>
+            </NavLink>
+          </div>
+        ))}
     </>
   );
 }
