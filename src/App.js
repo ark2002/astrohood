@@ -3,6 +3,7 @@ import React from "react";
 import { Router } from "./frontend/router/Router";
 import { Navbar, SidebarMenu } from "./frontend/components";
 import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const sidebarDisplay = (pathname) => {
   if (
@@ -36,6 +37,17 @@ function App() {
           <Router />
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        className="toast__style"
+      />
     </div>
   );
 }
