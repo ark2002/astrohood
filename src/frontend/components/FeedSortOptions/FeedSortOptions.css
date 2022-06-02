@@ -1,0 +1,31 @@
+.sort__list {
+    align-self: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.sort__list-item,
+.sort__selected {
+    width: 12rem;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sort__list-item {
+    border: 1px solid var(--black-color);
+}
+
+.sort__list-item:hover {
+    background-color: var(--hover-color);
+}
+
+.sort__selected {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.sort__list-item>.material-icons,
+.sort__selected>.material-icons {
+    padding-right: 5px;
+}
