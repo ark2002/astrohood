@@ -1,0 +1,47 @@
+.newPostCard {
+    width: 97%;
+    border: 1px solid var(--gray-color);
+    padding: 1rem;
+    justify-content: flex-start;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.np__main {
+    width: 92%;
+    gap: 2.5rem;
+}
+
+.np__post-content {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    font-family: var(--secondary-font-family);
+    outline: none;
+    resize: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.np__bottom-right {
+    margin-left: auto;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.charcount--warn {
+    color: var(--notif-color)
+}
+
+.charcount--error {
+    color: var(--busy-color)
+}
+
+.np__charcount {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.np__post-button {
+    padding: 0.75rem 1.5rem;
+}
