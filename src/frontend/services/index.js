@@ -1,2 +1,3 @@
 export { signInService, signUpService } from "./auth-services";
-export { getAllPostsService } from "./post-services";
+export { getAllPostsService, createNewPostService } from "./post-services";
+export { likeAPostService, unlikeAPostService } from "./likes-services";
