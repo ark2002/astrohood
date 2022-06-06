@@ -8,7 +8,6 @@ const FeedSortOptions = () => {
 
   const sortHandler = (selectedSort) => {
     dispatch(sortPostsHandler(selectedSort));
-    console.log(sortPostsBy);
   };
 
   return (
