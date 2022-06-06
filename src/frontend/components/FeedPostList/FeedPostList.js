@@ -25,8 +25,8 @@ const FeedPostList = () => {
       ? setSortedPosts(
           [...posts].sort(
             (a, b) =>
-             ( b.comments.length +
-              b.likes.likeCount )-
+              b.comments.length +
+              b.likes.likeCount -
               (a.comments.length + a.likes.likeCount)
           )
         )
