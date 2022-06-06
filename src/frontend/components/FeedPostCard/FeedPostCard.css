@@ -1,0 +1,68 @@
+.feedpostcard {
+    width: 97%;
+    border: 1px solid var(--gray-color);
+    padding: 1rem;
+    justify-content: flex-start;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.fd-profile--img {
+    width: 5rem;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+.fd-postcard__main {
+    padding: 0 1rem;
+    gap: 1rem;
+    width: 100%;
+}
+
+.fd-postcard__top {
+    align-items: center;
+    gap: 1rem;
+}
+
+.fd-postcard__subheadings {
+    color: var(--gray-color);
+    gap: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.fd-postcard__content {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.fd-postcard__options {
+    justify-content: space-between;
+    color: var(--gray-color);
+    font-weight: 500;
+}
+
+.fd-postcard__options span.material-icons {
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.fd-postcard__options>div {
+    align-items: center;
+}
+
+.option--like:hover {
+    color: var(--busy-color);
+}
+
+.option--comment:hover {
+    color: var(--primary-color);
+}
+
+.option--bookmark:hover {
+    color: var(--input-primarycolor-valid);
+}
+
+.option--share:hover {
+    color: var(--tertiary-color);
+}
