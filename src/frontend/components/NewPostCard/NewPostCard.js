@@ -24,17 +24,17 @@ const NewPostCard = () => {
     setPostContent("");
     setCharCount(null);
     try {
-      const response = await dispatch(
+      await dispatch(
         createNewPostHandler({
           postData: { content: postContent },
           token: token,
         })
       );
-      console.log(response.error);
     } catch (error) {
       console.error(error);
     }
   };
+
 
   return (
     <div className="newPostCard flex--row">

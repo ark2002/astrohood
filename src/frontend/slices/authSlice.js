@@ -62,7 +62,6 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(signInHandler.fulfilled, (state, action) => {
-        console.log(action);
         state.isAuth = true;
         state.token = action.payload.encodedToken;
         state.loading = false;

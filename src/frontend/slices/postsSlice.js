@@ -1,12 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllPostsService } from "../services";
-import { createNewPostService } from "../services/post-services";
+import {
+  getAllPostsService,
+  createNewPostService,
+  likeAPostService,
+  unlikeAPostService,
+} from "../services";
+import { addToBookmarksService } from "../services/bookmark-services/addToBookmarksService";
+import { getBookmarkedService } from "../services/bookmark-services/getBookmarkedService";
+import { removeFromBookmarksService } from "../services/bookmark-services/removeFromBookmarksService";
 
 const initialState = {
   posts: [],
   postLoading: true,
   postError: false,
   sortPostsBy: "LATEST",
+  bookmarks: [],
 };
 
 export const getAllPostsHandler = createAsyncThunk(
@@ -24,10 +32,68 @@ export const getAllPostsHandler = createAsyncThunk(
 export const createNewPostHandler = createAsyncThunk(
   "posts/newPost",
   async ({ postData, token }, { rejectWithValue }) => {
-    console.log("slice:", postData);
     try {
       const data = await createNewPostService(postData, token);
-      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const likeAPostHandler = createAsyncThunk(
+  "posts/likePost",
+  async ({ id, token }, { rejectWithValue }) => {
+    try {
+      const data = await likeAPostService(id, token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const unlikeAPostHandler = createAsyncThunk(
+  "posts/unlikePost",
+  async ({ id, token }, { rejectWithValue }) => {
+    try {
+      const data = await unlikeAPostService(id, token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getBookmarkedHandler = createAsyncThunk(
+  "/posts/bookmarked",
+  async (token, { rejectWithValue }) => {
+    try {
+      const data = await getBookmarkedService(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addToBookmarksHandler = createAsyncThunk(
+  "posts/addToBookmarks",
+  async ({ id, token }, { rejectWithValue }) => {
+    try {
+      const data = await addToBookmarksService(id, token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeFromBookmarksHandler = createAsyncThunk(
+  "posts/removeFromBookmarks",
+  async ({ id, token }, { rejectWithValue }) => {
+    try {
+      const data = await removeFromBookmarksService(id, token);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -70,6 +136,31 @@ const postsSlice = createSlice({
       .addCase(createNewPostHandler.rejected, (state) => {
         state.postLoading = false;
         state.postError = true;
+      })
+      .addCase(likeAPostHandler.fulfilled, (state, action) => {
+        state.posts = action.payload;
+      })
+      .addCase(unlikeAPostHandler.fulfilled, (state, action) => {
+        state.posts = action.payload;
+      })
+      .addCase(getBookmarkedHandler.pending, (state) => {
+        state.postLoading = true;
+        state.postError = false;
+      })
+      .addCase(getBookmarkedHandler.fulfilled, (state, action) => {
+        state.postLoading = false;
+        state.postError = false;
+        state.bookmarks = action.payload;
+      })
+      .addCase(getBookmarkedHandler.rejected, (state) => {
+        state.postLoading = false;
+        state.postError = true;
+      })
+      .addCase(addToBookmarksHandler.fulfilled, (state, action) => {
+        state.bookmarks = action.payload;
+      })
+      .addCase(removeFromBookmarksHandler.fulfilled, (state, action) => {
+        state.bookmarks = action.payload;
       });
   },
 });

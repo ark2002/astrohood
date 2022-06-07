@@ -1,5 +1,11 @@
+import { BookmarkPostList } from "../../components/BookmarkPostList/BookmarkPostList";
+
 const BookmarkScreen = () => {
-  return <>BookmarkScreen</>;
+  return (
+    <>
+      <BookmarkPostList />
+    </>
+  );
 };
 
 export { BookmarkScreen };

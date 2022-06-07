@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const getAllPostsService = async (token) => {
+export const getBookmarkedService = async (token) => {
   try {
-    const { data } = await axios.get("/api/posts", {
+    const { data } = await axios.get("/api/users/bookmark", {
       headers: {
         authorization: token,
       },
     });
-    return data.posts;
+    return data.bookmarks;
   } catch (error) {
     console.error(error);
   }

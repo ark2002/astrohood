@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const createNewPostService = async (postData, token) => {
+export const addToBookmarksService = async (id, token) => {
   try {
     const { data } = await axios.post(
-      "/api/posts",
-      { postData },
+      `/api/users/bookmark/${id}`,
+      {},
       {
         headers: {
           authorization: token,
         },
       }
     );
-    return data.posts;
+    return data.bookmarks;
   } catch (error) {
     console.error(error);
   }

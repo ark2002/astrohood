@@ -55,8 +55,16 @@
     color: var(--busy-color);
 }
 
+.post__liked {
+    color: var(--busy-color);
+}
+
 .option--comment:hover {
     color: var(--primary-color);
+}
+
+.post__bookmarked {
+    color: var(--input-primarycolor-valid);
 }
 
 .option--bookmark:hover {

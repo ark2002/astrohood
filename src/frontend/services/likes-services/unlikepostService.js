@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const createNewPostService = async (postData, token) => {
+export const unlikeAPostService = async (id, token) => {
   try {
     const { data } = await axios.post(
-      "/api/posts",
-      { postData },
+      `/api/posts/dislike/${id}`,
+      {},
       {
         headers: {
           authorization: token,
