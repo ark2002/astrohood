@@ -26,11 +26,17 @@ const BookmarkPostList = () => {
 
   return (
     <div className="feed__post-list">
-      {bookmarkedPosts === null
-        ? null
-        : bookmarkedPosts.map((post) => (
-            <FeedPostCard post={post} key={post._id} />
-          ))}
+      {bookmarkedPosts.length < 1 ? (
+        <>
+          <h1 className="secondary__font heading3 bookmark__placeholder">
+            Your bookmarked posts will appear here
+          </h1>
+        </>
+      ) : (
+        bookmarkedPosts
+          .map((post) => <FeedPostCard post={post} key={post._id} />)
+          .reverse()
+      )}
     </div>
   );
 };
