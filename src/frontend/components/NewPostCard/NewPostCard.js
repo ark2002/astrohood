@@ -8,7 +8,7 @@ const NewPostCard = () => {
   const [postContent, setPostContent] = useState("");
   const [charCount, setCharCount] = useState();
   const dispatch = useDispatch();
-  const { token } = useSelector((store) => store.auth);
+  const { token, currUser } = useSelector((store) => store.auth);
 
   const handlePostText = (event) => {
     const content = event.target.value;
@@ -35,12 +35,11 @@ const NewPostCard = () => {
     }
   };
 
-
   return (
     <div className="newPostCard flex--row">
       <div className="fd-postcard__aside">
         <img
-          src="https://borchapartners.com/wp-content/uploads/2022/02/no-user-image.jpg"
+          src={currUser.profileImg}
           alt="profile__img"
           className="fd-profile--img"
         />
