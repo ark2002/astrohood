@@ -8,30 +8,43 @@ const FeedPostList = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((store) => store.auth);
   const [sortedPosts, setSortedPosts] = useState([]);
+  const [feedPosts, setFeedPosts] = useState([]);
 
   useEffect(() => {
     dispatch(getAllPostsHandler(token));
   }, [dispatch, token]);
 
-  const { posts } = useSelector((store) => store.post);
-  const { sortPostsBy } = useSelector((store) => store.post);
+  const { posts, sortPostsBy } = useSelector((store) => store.post);
+  const { currUser } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    setFeedPosts(
+      posts.filter((post) =>
+        currUser.following.find(
+          (user) =>
+            user.username === post.username ||
+            post.username === currUser.username
+        )
+      )
+    );
+  }, [currUser, posts]);
 
   useEffect(() => {
     sortPostsBy === "LATEST"
-      ? setSortedPosts([...posts].reverse())
+      ? setSortedPosts([...feedPosts].reverse())
       : sortPostsBy === "OLDEST"
-      ? setSortedPosts([...posts])
+      ? setSortedPosts([...feedPosts])
       : sortPostsBy === "TRENDING"
       ? setSortedPosts(
-          [...posts].sort(
+          [...feedPosts].sort(
             (a, b) =>
               b.comments.length +
               b.likes.likeCount -
               (a.comments.length + a.likes.likeCount)
           )
         )
-      : setSortedPosts([...posts]);
-  }, [sortPostsBy, posts]);
+      : setSortedPosts([...feedPosts]);
+  }, [sortPostsBy, feedPosts]);
 
   return (
     <div className="feed__post-list">
