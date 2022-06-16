@@ -113,8 +113,8 @@ function SignInScreen() {
               onClick={(e) => {
                 e.preventDefault();
                 handleSignIn({
-                  username: "adarshbalika",
-                  password: "adarshBalika123",
+                  username: "farhanquareshi",
+                  password: "farhanquareshi123",
                 });
               }}
             >
