@@ -123,3 +123,7 @@
 .editpostmodal__container>div {
     width: 55%;
 }
+
+.show--pointer {
+    cursor: pointer;
+}
