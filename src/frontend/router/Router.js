@@ -7,6 +7,7 @@ import {
   FeedScreen,
   LandingScreen,
   PageNotFoundScreen,
+  PostScreen,
   ProfileScreen,
   SignInScreen,
   SignUpScreen,
@@ -18,6 +19,14 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingScreen />} />
+      <Route
+        path="/post/:postId"
+        element={
+          <PrivateRoute>
+            <PostScreen />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/feed"
         element={
