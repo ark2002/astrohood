@@ -4,6 +4,8 @@ import {
   createNewPostService,
   likeAPostService,
   unlikeAPostService,
+  editPostService,
+  deletePostService,
 } from "../services";
 import { addToBookmarksService } from "../services/bookmark-services/addToBookmarksService";
 import { getBookmarkedService } from "../services/bookmark-services/getBookmarkedService";
@@ -34,6 +36,30 @@ export const createNewPostHandler = createAsyncThunk(
   async ({ postData, token }, { rejectWithValue }) => {
     try {
       const data = await createNewPostService(postData, token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editPostHandler = createAsyncThunk(
+  "posts/editPost",
+  async ({ token, id, postData }, { rejectWithValue }) => {
+    try {
+      const data = await editPostService(token, id, postData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deletePostHandler = createAsyncThunk(
+  "post/deletepost",
+  async ({ token, id }, { rejectWithValue }) => {
+    try {
+      const data = await deletePostService(token, id);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -161,6 +187,32 @@ const postsSlice = createSlice({
       })
       .addCase(removeFromBookmarksHandler.fulfilled, (state, action) => {
         state.bookmarks = action.payload;
+      })
+      .addCase(editPostHandler.pending, (state) => {
+        state.postLoading = true;
+        state.postError = false;
+      })
+      .addCase(editPostHandler.fulfilled, (state, action) => {
+        state.postLoading = false;
+        state.postError = false;
+        state.posts = action.payload;
+      })
+      .addCase(editPostHandler.rejected, (state) => {
+        state.postLoading = false;
+        state.postError = true;
+      })
+      .addCase(deletePostHandler.pending, (state) => {
+        state.postLoading = true;
+        state.postError = false;
+      })
+      .addCase(deletePostHandler.fulfilled, (state, action) => {
+        state.postLoading = false;
+        state.postError = false;
+        state.posts = action.payload;
+      })
+      .addCase(deletePostHandler.rejected, (state) => {
+        state.postLoading = false;
+        state.postError = true;
       });
   },
 });

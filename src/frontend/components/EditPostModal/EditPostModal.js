@@ -1,11 +1,11 @@
-import "./NewPostCard.css";
+import "./EditPostModal.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewPostHandler } from "../../slices/postsSlice";
+import { editPostHandler } from "../../slices";
 
-const NewPostCard = () => {
-  const [postContent, setPostContent] = useState("");
+const EditPostModal = ({ post, setEditModalOpen }) => {
+  const [postContent, setPostContent] = useState(post.content);
   const [charCount, setCharCount] = useState();
   const dispatch = useDispatch();
   const { token, currUser } = useSelector((store) => store.auth);
@@ -20,14 +20,15 @@ const NewPostCard = () => {
     setPostContent(content);
   };
 
-  const handleSendPost = async () => {
-    setPostContent("");
+  const handleEditPost = async () => {
+    setEditModalOpen(false);
     setCharCount(null);
     try {
       await dispatch(
-        createNewPostHandler({
-          postData: { content: postContent },
-          token: token,
+        editPostHandler({
+          postData: { ...post, content: postContent },
+          token,
+          id: post._id,
         })
       );
     } catch (error) {
@@ -36,7 +37,7 @@ const NewPostCard = () => {
   };
 
   return (
-    <div className="newPostCard flex--row">
+    <div className="newPostCard flex--row edit__modalCard">
       <div className="fd-postcard__aside">
         <img
           src={currUser.profileImg}
@@ -49,7 +50,7 @@ const NewPostCard = () => {
           <TextareaAutosize
             minRows="1"
             className="np__post-content"
-            placeholder="What's happening?"
+            placeholder=""
             value={postContent}
             onChange={handlePostText}
           />
@@ -70,9 +71,9 @@ const NewPostCard = () => {
             <button
               className="btn btn-color--primary btn-font--secondary np__post-button"
               disabled={charCount < 0 || postContent === "" ? true : false}
-              onClick={() => handleSendPost(postContent)}
+              onClick={() => handleEditPost(postContent)}
             >
-              Post
+              Save
             </button>
           </div>
         </div>
@@ -81,4 +82,4 @@ const NewPostCard = () => {
   );
 };
 
-export { NewPostCard };
+export { EditPostModal };
