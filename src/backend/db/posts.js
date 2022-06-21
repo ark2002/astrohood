@@ -39,6 +39,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -48,6 +52,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -84,7 +92,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "farhanquareshi",
-
+        profileImg:
+          "https://www.personality-database.com/profile_images/39642.png",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -94,6 +105,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "tonystark",
+        profileImg:
+          "https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc2NTQ3MDUyMjU4MzM4NTIz/tony-stark-case-study-and-psychological-assessment.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Wow!",
         votes: {
           upvotedBy: [],
@@ -103,6 +118,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "hankpym",
+        profileImg:
+          "https://pyxis.nymag.com/v1/imgs/711/992/eaf3d9aa86ceff87de2ff6ad7f98fa4953-ant-man-scene-1.rsquare.w700.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Wow!",
         votes: {
           upvotedBy: [],
@@ -128,6 +147,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -137,6 +160,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -168,6 +195,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -177,6 +208,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -223,6 +258,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -232,6 +271,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -257,6 +300,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -266,6 +313,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -291,6 +342,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -300,6 +355,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -325,6 +384,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -334,6 +397,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -359,6 +426,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -368,6 +439,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -393,6 +468,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -402,6 +481,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -427,6 +510,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -436,6 +523,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -460,6 +551,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -469,6 +564,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -494,6 +593,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -503,6 +606,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -528,6 +635,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -537,6 +648,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -562,6 +677,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -571,6 +690,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -598,6 +721,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -607,6 +734,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -632,6 +763,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -641,6 +776,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -666,6 +805,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -675,6 +818,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -700,6 +847,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -709,6 +860,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -734,6 +889,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -743,6 +902,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -768,6 +931,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -777,6 +944,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -802,6 +973,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -811,6 +986,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -836,6 +1015,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -845,6 +1028,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
@@ -870,6 +1057,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Yes",
         votes: {
           upvotedBy: [],
@@ -879,6 +1070,10 @@ export const posts = [
       {
         _id: uuid(),
         username: "johndoe",
+        profileImg:
+          "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
         text: "Relief!",
         votes: {
           upvotedBy: [],
