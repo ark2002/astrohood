@@ -1,30 +1,34 @@
 import "./App.css";
 import React from "react";
 import { Router } from "./frontend/router/Router";
-import { Navbar, SidebarMenu } from "./frontend/components";
+import { Navbar, SidebarMenu, Suggestions } from "./frontend/components";
 import { matchPath, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 const sidebarDisplay = (pathname) => {
-  const isMatch = matchPath(
-    {
-      path: "/post/:postId",
-      exact: true,
-      strict: true,
-    },
-    pathname
-  )
-    ? true
-    : false;
+  const isMatch =
+    matchPath(
+      {
+        path: "/post/:postId",
+        exact: true,
+        strict: true,
+      },
+      pathname
+    ) ||
+    matchPath(
+      {
+        path: "/user/:userId",
+        exact: true,
+        strict: true,
+      },
+      pathname
+    )
+      ? true
+      : false;
 
-  if (
-    pathname === "/explore" ||
-    pathname === "/bookmarks" ||
-    pathname === "/profile" ||
-    pathname === "/feed" ||
-    pathname === "/post" ||
-    isMatch
-  ) {
+  const allowSidebar = ["/explore", "/bookmarks", "/profile", "/feed", "/post"];
+
+  if (allowSidebar.includes(pathname) || isMatch) {
     return false;
   } else {
     return true;
@@ -49,18 +53,9 @@ function App() {
         <div className="router">
           <Router />
         </div>
+        {!sidebarDisplay(location.pathname) && <Suggestions />}
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        className="toast__style"
-      />
+      <ToastContainer className="toast__style" />
     </div>
   );
 }
