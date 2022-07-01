@@ -11,7 +11,7 @@ const SidebarMenu = () => {
   return (
     <>
       <nav className="sidebar__container flex--column primary__font">
-        <NavLink to="/feed" className={optionSelected}>
+        <NavLink to="/" className={optionSelected}>
           <span className="material-icons sidebar__option-icon">home</span>
           <span className="sidebar__option-text">Home</span>
         </NavLink>
