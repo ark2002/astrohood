@@ -25,23 +25,17 @@ function SignUpScreen() {
       const response = await dispatch(signUpHandler(user));
       if (response?.payload.encodedToken) {
         toast.success("Sign-up Successful !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: true,
           theme: "dark",
         });
         navigate(from, { replace: true });
       } else {
         toast.error("Sign-up Error : Try again !", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: true,
           theme: "dark",
         });
       }
