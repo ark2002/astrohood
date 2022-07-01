@@ -17,3 +17,10 @@ export {
   getBookmarkedService,
   removeFromBookmarksService,
 } from "./bookmark-services";
+export {
+  followAUserService,
+  unfollowAUserService,
+  getAllUsersService,
+  getSingleUserService,
+  editUserDetailService,
+} from "./user-services";
