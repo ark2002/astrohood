@@ -19,61 +19,16 @@ const Router = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LandingScreen />} />
-      <Route
-        path="/post/:postId"
-        element={
-          <PrivateRoute>
-            <PostScreen />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/feed"
-        element={
-          <PrivateRoute>
-            <FeedScreen />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/explore"
-        element={
-          <PrivateRoute>
-            <ExploreScreen />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/bookmarks"
-        element={
-          <PrivateRoute>
-            <BookmarkScreen />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <PrivateRoute>
-            <ProfileScreen />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/user/:userId"
-        element={
-          <PrivateRoute>
-            <UserScreen />
-          </PrivateRoute>
-        }
-      />
-      {!isAuth && (
-        <>
-          <Route path="/signin" element={<SignInScreen />} />
-          <Route path="/signup" element={<SignUpScreen />} />
-        </>
-      )}
+      <Route element={<PrivateRoute />}>
+        <Route path="/post/:postId" element={<PostScreen />} />
+        <Route path="/" element={<FeedScreen />} />
+        <Route path="/explore" element={<ExploreScreen />} />
+        <Route path="/bookmarks" element={<BookmarkScreen />} />
+        <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/user/:userId" element={<UserScreen />} />
+      </Route>
+      <Route path="/signin" element={<SignInScreen />} />
+      <Route path="/signup" element={<SignUpScreen />} />
       <Route path="*" element={<PageNotFoundScreen />} />
     </Routes>
   );
