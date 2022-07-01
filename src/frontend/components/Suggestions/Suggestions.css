@@ -1,0 +1,17 @@
+.suggestions__container {
+    width: 25%;
+}
+
+.suggestions {
+    position: fixed;
+    margin: 2rem;
+    padding: 1rem;
+    width: 25rem;
+    border: 1px solid var(--black-color);
+    gap: 1rem;
+}
+
+.suggestion__heading {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
