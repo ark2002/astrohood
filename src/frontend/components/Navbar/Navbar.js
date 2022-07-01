@@ -18,12 +18,9 @@ function Navbar() {
     dispatch(signOutHandler());
     navigate("/");
     toast.info("Signed Out !", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-      progress: undefined,
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
       theme: "dark",
     });
   };
