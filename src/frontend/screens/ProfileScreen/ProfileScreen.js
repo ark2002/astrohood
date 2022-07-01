@@ -1,42 +1,65 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FeedPostCard } from "../../components";
-import { getAllPostsHandler } from "../../slices";
+import {
+  EditUserModal,
+  FeedPostCard,
+  ListModal,
+  Loading,
+} from "../../components";
+import { useOnClickOutside } from "../../hooks";
+import { getAllPostsHandler, getSingleUserHandler } from "../../slices";
 import "./ProfileScreen.css";
 
 const ProfileScreen = () => {
   const [userPosts, setUserPosts] = useState([]);
+  const [isModal, setIsModal] = useState("");
   const dispatch = useDispatch();
+  const ref = useRef();
 
-  const {
-    token,
-    currUser: {
-      profileImg,
-      username,
-      firstName,
-      lastName,
-      bio,
-      following,
-      followers,
-      portfolioLink,
-    },
-  } = useSelector((store) => store.auth);
+  const { token, currUser } = useSelector((store) => store.auth);
+  const { allUsers, userDetails } = useSelector((store) => store.user);
   const { posts } = useSelector((store) => store.post);
 
-  useEffect(() => {
-    dispatch(getAllPostsHandler(token));
-  }, [dispatch, token]);
+  useOnClickOutside(ref, () => setIsModal(""));
 
   useEffect(() => {
-    setUserPosts(posts.filter((post) => post.username === username));
-  }, [posts, username]);
+    (async () => {
+      await dispatch(getAllPostsHandler(token));
+      await dispatch(
+        getSingleUserHandler({ token, username: currUser.username })
+      );
+    })();
+  }, [currUser, dispatch, token, allUsers]);
 
-  return (
-    <>
+  const {
+    profileImg,
+    username,
+    firstName,
+    lastName,
+    bio,
+    following,
+    followers,
+    portfolioLink,
+  } = userDetails;
+
+  useEffect(() => {
+    setUserPosts(posts.filter((post) => post.username === currUser.username));
+  }, [posts, currUser, allUsers]);
+
+  return userDetails.username !== currUser.username ? (
+    <Loading />
+  ) : (
+    <div>
       <div className="profilescreen flex--column secondary__font">
-        <div className="profile__banner flex--column">
+        <div className="profile__banner flex--row">
           <img className="profile__image" src={profileImg} alt="not found" />
         </div>
+        <button
+          className="edit__button secondary__font"
+          onClick={() => setIsModal("Edit")}
+        >
+          Edit
+        </button>
         <h1 className="profile__username">@{username}</h1>
         <div className="profile__name flex--row heading4">
           <h1 className="profile__first-name">{firstName}</h1>
@@ -52,8 +75,18 @@ const ProfileScreen = () => {
           Portfolio <span className="material-icons">open_in_new</span>
         </a>
         <div className="profile__follow-details heading5 flex--row">
-          <h1 className="profile__following">{following.length} Following</h1>
-          <h1 className="profile__followers">{followers.length} Followers</h1>
+          <h1
+            className="profile__following"
+            onClick={() => setIsModal("Following")}
+          >
+            {following?.length} Following
+          </h1>
+          <h1
+            className="profile__followers"
+            onClick={() => setIsModal("Followers")}
+          >
+            {followers?.length} Followers
+          </h1>
         </div>
       </div>
       <div className="profile__post-list">
@@ -63,7 +96,25 @@ const ProfileScreen = () => {
               .map((post) => <FeedPostCard post={post} key={post._id} />)
               .reverse()}
       </div>
-    </>
+      {isModal !== "" && (
+        <div className="list-modal__container flex--row">
+          <div ref={ref}>
+            {isModal === "Edit" ? (
+              <EditUserModal
+                userDetails={userDetails}
+                setIsModal={setIsModal}
+              />
+            ) : (
+              <ListModal
+                listModal={isModal}
+                list={isModal === "Following" ? following : followers}
+                setListModal={setIsModal}
+              />
+            )}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
