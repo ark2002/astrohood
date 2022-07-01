@@ -11,6 +11,7 @@ import {
   ProfileScreen,
   SignInScreen,
   SignUpScreen,
+  UserScreen,
 } from "../screens";
 
 const Router = () => {
@@ -56,6 +57,14 @@ const Router = () => {
         element={
           <PrivateRoute>
             <ProfileScreen />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user/:userId"
+        element={
+          <PrivateRoute>
+            <UserScreen />
           </PrivateRoute>
         }
       />
