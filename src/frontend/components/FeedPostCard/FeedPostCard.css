@@ -14,6 +14,7 @@
     width: 5rem;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
+    cursor: pointer;
 }
 
 .fd-postcard__main {
@@ -25,6 +26,14 @@
 .fd-postcard__top {
     align-items: center;
     gap: 1rem;
+}
+
+.fd-postcard__top>h1 {
+    cursor: pointer;
+}
+
+.fd-postcard__top>h1:hover {
+    color: #ababab;
 }
 
 .fd-postcard__subheadings {
