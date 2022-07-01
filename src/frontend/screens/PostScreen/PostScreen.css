@@ -1,0 +1,38 @@
+.postScreen__comment {
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.comment__top {
+    align-items: center;
+    gap: 1rem;
+}
+
+.comment-profile__img {
+    width: 4rem;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    align-self: flex-start;
+}
+
+.comment__input {
+    color: inherit;
+    width: 97%;
+    background-color: transparent;
+    border: 1px solid var(--black-color);
+    font-family: var(--secondary-font-family);
+    outline: none;
+    resize: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.comment__bottom {
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.comment__bottom>button {
+    margin-left: auto;
+}

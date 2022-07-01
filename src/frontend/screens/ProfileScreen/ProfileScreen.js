@@ -49,7 +49,7 @@ const ProfileScreen = () => {
           rel="noreferrer"
           className="portfolio__link"
         >
-          Portfolio <span class="material-icons">open_in_new</span>
+          Portfolio <span className="material-icons">open_in_new</span>
         </a>
         <div className="profile__follow-details heading5 flex--row">
           <h1 className="profile__following">{following.length} Following</h1>

@@ -6,10 +6,13 @@ import {
   unlikeAPostService,
   editPostService,
   deletePostService,
+  addToBookmarksService,
+  getBookmarkedService,
+  removeFromBookmarksService,
+  createACommentService,
+  editACommentService,
+  deleteACommentService,
 } from "../services";
-import { addToBookmarksService } from "../services/bookmark-services/addToBookmarksService";
-import { getBookmarkedService } from "../services/bookmark-services/getBookmarkedService";
-import { removeFromBookmarksService } from "../services/bookmark-services/removeFromBookmarksService";
 
 const initialState = {
   posts: [],
@@ -85,6 +88,47 @@ export const unlikeAPostHandler = createAsyncThunk(
     try {
       const data = await unlikeAPostService(id, token);
       return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createACommentHandler = createAsyncThunk(
+  "posts/createComment",
+  async ({ token, postId, commentData }, { rejectWithValue }) => {
+    try {
+      const data = await createACommentService(token, postId, commentData);
+      return { comments: data, postId };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editACommentHandler = createAsyncThunk(
+  "posts/editComment",
+  async ({ token, postId, commentId, commentData }, { rejectWithValue }) => {
+    try {
+      const data = await editACommentService(
+        token,
+        postId,
+        commentId,
+        commentData
+      );
+      return { comments: data, postId };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteACommentHandler = createAsyncThunk(
+  "posts/deleteComment",
+  async ({ token, commentId, postId }, { rejectWithValue }) => {
+    try {
+      const data = await deleteACommentService(token, commentId, postId);
+      return { comments: data, postId };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -213,7 +257,29 @@ const postsSlice = createSlice({
       .addCase(deletePostHandler.rejected, (state) => {
         state.postLoading = false;
         state.postError = true;
-      });
+      })
+      .addCase(createACommentHandler.fulfilled, (state, action) => {
+        const postIndex = state.posts.findIndex(
+          (post) => post._id === action.payload.postId
+        );
+        state.posts[postIndex].comments = action.payload.comments;
+      })
+      .addCase(
+        editACommentHandler.fulfilled,
+        (state, { payload: { postId, comments } }) => {
+          state.posts = state.posts.map((post) =>
+            post._id === postId ? { ...post, comments } : post
+          );
+        }
+      )
+      .addCase(
+        deleteACommentHandler.fulfilled,
+        (state, { payload: { postId, comments } }) => {
+          state.posts = state.posts.map((post) =>
+            post._id === postId ? { ...post, comments } : post
+          );
+        }
+      );
   },
 });
 

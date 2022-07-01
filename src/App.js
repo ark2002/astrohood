@@ -2,15 +2,28 @@ import "./App.css";
 import React from "react";
 import { Router } from "./frontend/router/Router";
 import { Navbar, SidebarMenu } from "./frontend/components";
-import { useLocation } from "react-router-dom";
+import { matchPath, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 const sidebarDisplay = (pathname) => {
+  const isMatch = matchPath(
+    {
+      path: "/post/:postId",
+      exact: true,
+      strict: true,
+    },
+    pathname
+  )
+    ? true
+    : false;
+
   if (
     pathname === "/explore" ||
     pathname === "/bookmarks" ||
     pathname === "/profile" ||
-    pathname === "/feed"
+    pathname === "/feed" ||
+    pathname === "/post" ||
+    isMatch
   ) {
     return false;
   } else {

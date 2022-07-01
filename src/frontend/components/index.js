@@ -5,3 +5,4 @@ export { NewPostCard } from "./NewPostCard/NewPostCard";
 export { FeedPostList } from "./FeedPostList/FeedPostList";
 export { FeedSortOptions } from "./FeedSortOptions/FeedSortOptions";
 export { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+export { PostCommentCard } from "./PostCommentCard/PostCommentCard";

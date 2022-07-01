@@ -1,7 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useOnClickOutside } from "../../hooks";
+import { getCommentsService } from "../../services";
 import {
   addToBookmarksHandler,
   deletePostHandler,
@@ -15,17 +18,19 @@ import "./FeedPostCard.css";
 const FeedPostCard = ({ post }) => {
   const dispatch = useDispatch();
   const ref = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useOnClickOutside(ref, () => setOptionModalOpen(false));
 
   const [optionModalOpen, setOptionModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const {
     _id,
     username,
     content,
-    comments,
     createdAt,
     likes: { likeCount, likedBy },
     profileImg,
@@ -45,8 +50,26 @@ const FeedPostCard = ({ post }) => {
   const isLikedByCurrUser = getIslikedByCurrUser();
   const isPostBookmarked = getIsPostBookmarked();
   const isPostedByCurrentUser = getIsPostedByCurrentUser();
+  const isOnPostScreen = matchPath(
+    {
+      path: "/post/:postId",
+      exact: true,
+      strict: true,
+    },
+    location.pathname
+  )
+    ? true
+    : false;
 
-  const toggleLikeHandler = async () => {
+  useEffect(() => {
+    (async () => {
+      const data = await getCommentsService(token, _id);
+      setComments(data);
+    })();
+  }, [_id, token]);
+
+  const toggleLikeHandler = async (e) => {
+    e.stopPropagation();
     try {
       isLikedByCurrUser
         ? await dispatch(unlikeAPostHandler({ id: _id, token }))
@@ -56,7 +79,8 @@ const FeedPostCard = ({ post }) => {
     }
   };
 
-  const bookmarkHandler = async () => {
+  const bookmarkHandler = async (e) => {
+    e.stopPropagation();
     try {
       isPostBookmarked
         ? await dispatch(removeFromBookmarksHandler({ id: _id, token }))
@@ -66,9 +90,22 @@ const FeedPostCard = ({ post }) => {
     }
   };
 
-  const deleteCurrentPostHandler = async () => {
+  const deleteCurrentPostHandler = async (e) => {
+    e.stopPropagation();
     try {
       await dispatch(deletePostHandler({ token, id: _id }));
+      toast.success("Post Deleted!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      if (isOnPostScreen) {
+        navigate("/feed");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -76,15 +113,16 @@ const FeedPostCard = ({ post }) => {
 
   return (
     <>
-      <div className="feedpostcard__container">
+      <div
+        className={`feedpostcard__container ${
+          isOnPostScreen ? "" : "show--pointer"
+        }`}
+        onClick={() => navigate(`/post/${_id}`)}
+      >
         <div className="flex--row feedpostcard secondary__font">
           <div className="fd-postcard__aside">
             <img
-              src={
-                username === currUser.username
-                  ? currUser.profileImg
-                  : profileImg
-              }
+              src={isPostedByCurrentUser ? currUser.profileImg : profileImg}
               alt="profile__img"
               className="fd-profile--img"
             />
@@ -101,7 +139,10 @@ const FeedPostCard = ({ post }) => {
               {isPostedByCurrentUser && (
                 <span
                   className="material-icons"
-                  onClick={() => setOptionModalOpen(!optionModalOpen)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOptionModalOpen(!optionModalOpen);
+                  }}
                 >
                   more_vert
                 </span>
@@ -117,14 +158,14 @@ const FeedPostCard = ({ post }) => {
                 {isLikedByCurrUser ? (
                   <span
                     className="material-icons option--like"
-                    onClick={() => toggleLikeHandler()}
+                    onClick={(e) => toggleLikeHandler(e)}
                   >
                     favorite
                   </span>
                 ) : (
                   <span
                     className="material-icons option--like"
-                    onClick={() => toggleLikeHandler()}
+                    onClick={(e) => toggleLikeHandler(e)}
                   >
                     favorite_border
                   </span>
@@ -138,19 +179,24 @@ const FeedPostCard = ({ post }) => {
               {isPostBookmarked ? (
                 <span
                   className="material-icons post__bookmarked"
-                  onClick={() => bookmarkHandler()}
+                  onClick={(e) => bookmarkHandler(e)}
                 >
                   bookmark
                 </span>
               ) : (
                 <span
                   className="material-icons option--bookmark"
-                  onClick={() => bookmarkHandler()}
+                  onClick={(e) => bookmarkHandler(e)}
                 >
                   bookmark_border
                 </span>
               )}
-              <span className="material-icons option--share">ios_share</span>
+              <span
+                className="material-icons option--share"
+                onClick={(e) => e.stopPropagation()}
+              >
+                ios_share
+              </span>
             </div>
           </div>
         </div>
@@ -161,13 +207,16 @@ const FeedPostCard = ({ post }) => {
           >
             <p
               className="modal__options"
-              onClick={() => setEditModalOpen(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditModalOpen(true);
+              }}
             >
               Edit
             </p>
             <p
               className="modal__options"
-              onClick={() => deleteCurrentPostHandler()}
+              onClick={(e) => deleteCurrentPostHandler(e)}
             >
               Delete
             </p>
@@ -177,7 +226,10 @@ const FeedPostCard = ({ post }) => {
       {editModalOpen && (
         <div
           className="editpostmodal__container flex--column"
-          onClick={() => setEditModalOpen(false)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setEditModalOpen(false);
+          }}
         >
           <div onClick={(e) => e.stopPropagation()}>
             <EditPostModal post={post} setEditModalOpen={setEditModalOpen} />
