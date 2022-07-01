@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { PrivateRoute } from "../components";
 import {
   BookmarkScreen,
   ExploreScreen,
   FeedScreen,
-  LandingScreen,
   PageNotFoundScreen,
   PostScreen,
   ProfileScreen,
@@ -15,7 +13,6 @@ import {
 } from "../screens";
 
 const Router = () => {
-  const { isAuth } = useSelector((store) => store.auth);
 
   return (
     <Routes>
