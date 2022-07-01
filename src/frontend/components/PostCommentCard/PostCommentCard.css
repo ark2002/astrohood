@@ -10,6 +10,7 @@
     width: 5rem;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
+    cursor: pointer;
 }
 
 .commentCard__main {
@@ -21,6 +22,14 @@
 .commentCard__top {
     align-items: center;
     gap: 1rem;
+}
+
+.commentCard__top>h1 {
+    cursor: pointer;
+}
+
+.commentCard__top>h1:hover {
+    color: #ababab;
 }
 
 .commentCard__subheadings {
