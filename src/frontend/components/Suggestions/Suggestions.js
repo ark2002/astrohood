@@ -24,7 +24,7 @@ const Suggestions = () => {
   }, [allUsers, currUser, dispatch]);
 
   return (
-    suggestions !== undefined && (
+    suggestions && (
       <div className="suggestions__container">
         <div className="suggestions flex--column secondary__font">
           <h1 className="suggestion__heading">Suggestions</h1>
