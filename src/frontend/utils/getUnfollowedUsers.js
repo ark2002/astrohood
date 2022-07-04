@@ -13,8 +13,6 @@ export const getUnfollowedUsers = (users, username) => {
       : true
   );
 
-  console.log(unfollowedUsers);
-
   if (unfollowedUsers?.length > 3) {
     return unfollowedUsers.slice(0, 3);
   }

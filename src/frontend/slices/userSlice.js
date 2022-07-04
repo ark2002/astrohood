@@ -31,7 +31,6 @@ export const getSingleUserHandler = createAsyncThunk(
   async ({ token, username }, { rejectWithValue }) => {
     try {
       const data = await getSingleUserService(token, username);
-      console.log(data, "slice");
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

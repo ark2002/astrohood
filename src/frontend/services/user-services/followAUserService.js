@@ -11,7 +11,6 @@ export const followAUserService = async (token, followUserId) => {
         },
       }
     );
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
