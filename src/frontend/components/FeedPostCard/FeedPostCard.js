@@ -95,12 +95,9 @@ const FeedPostCard = ({ post }) => {
     try {
       await dispatch(deletePostHandler({ token, id: _id }));
       toast.success("Post Deleted!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: true,
         theme: "dark",
       });
       if (isOnPostScreen) {
@@ -109,6 +106,13 @@ const FeedPostCard = ({ post }) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const userClickHandler = (e) => {
+    e.stopPropagation();
+    isPostedByCurrentUser
+      ? navigate("/profile")
+      : navigate(`/user/${username}`);
   };
 
   return (
@@ -125,11 +129,14 @@ const FeedPostCard = ({ post }) => {
               src={isPostedByCurrentUser ? currUser.profileImg : profileImg}
               alt="profile__img"
               className="fd-profile--img"
+              onClick={(e) => userClickHandler(e)}
             />
           </div>
           <div className="fd-postcard__main flex--column">
             <div className="fd-postcard__top flex--row">
-              <h1 className="heading4">{username}</h1>
+              <h1 className="heading4" onClick={(e) => userClickHandler(e)}>
+                {username}
+              </h1>
               <div className="fd-postcard__subheadings flex--row">
                 <p>|</p>
                 <p>

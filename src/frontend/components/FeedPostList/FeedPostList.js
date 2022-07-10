@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPostsHandler } from "../../slices";
+import { getUserDetails } from "../../utils";
 import { FeedPostCard } from "../FeedPostCard/FeedPostCard";
 import "./FeedPostList.css";
 
@@ -16,18 +17,20 @@ const FeedPostList = () => {
 
   const { posts, sortPostsBy } = useSelector((store) => store.post);
   const { currUser } = useSelector((store) => store.auth);
+  const { allUsers } = useSelector((store) => store.user);
 
   useEffect(() => {
+    const usersDetails = getUserDetails(allUsers, currUser.username);
     setFeedPosts(
       posts.filter((post) =>
-        currUser.following.find(
+        usersDetails?.following.find(
           (user) =>
             user.username === post.username ||
             post.username === currUser.username
         )
       )
     );
-  }, [currUser, posts]);
+  }, [allUsers, currUser, posts]);
 
   useEffect(() => {
     sortPostsBy === "LATEST"

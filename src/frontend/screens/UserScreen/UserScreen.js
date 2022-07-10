@@ -1,35 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  EditUserModal,
-  FeedPostCard,
-  ListModal,
-  Loading,
-} from "../../components";
+import { useParams } from "react-router-dom";
+import { FeedPostCard, ListModal, Loading } from "../../components";
 import { useOnClickOutside } from "../../hooks";
-import { getAllPostsHandler, getSingleUserHandler } from "../../slices";
-import "./ProfileScreen.css";
+import {
+  followUserHandler,
+  getSingleUserHandler,
+  unFollowUserHandler,
+} from "../../slices";
+import "./UserScreen.css";
 
-const ProfileScreen = () => {
+const UserScreen = () => {
   const [userPosts, setUserPosts] = useState([]);
-  const [isModal, setIsModal] = useState("");
+  const [listModal, setListModal] = useState("");
+
   const dispatch = useDispatch();
   const ref = useRef();
+  const { userId } = useParams();
+
+  useOnClickOutside(ref, () => setListModal(""));
 
   const { token, currUser } = useSelector((store) => store.auth);
   const { allUsers, userDetails } = useSelector((store) => store.user);
   const { posts } = useSelector((store) => store.post);
 
-  useOnClickOutside(ref, () => setIsModal(""));
-
   useEffect(() => {
     (async () => {
-      await dispatch(getAllPostsHandler(token));
-      await dispatch(
-        getSingleUserHandler({ token, username: currUser.username })
-      );
+      await dispatch(getSingleUserHandler({ token, username: userId }));
     })();
-  }, [currUser, dispatch, token, allUsers]);
+  }, [allUsers, dispatch, token, userId]);
 
   const {
     profileImg,
@@ -43,23 +42,25 @@ const ProfileScreen = () => {
   } = userDetails;
 
   useEffect(() => {
-    setUserPosts(posts.filter((post) => post.username === currUser.username));
-  }, [posts, currUser, allUsers]);
+    setUserPosts(posts.filter((post) => post.username === userId));
+  }, [allUsers, currUser, following, posts, userId]);
 
-  return userDetails.username !== currUser.username ? (
+  const handleFollowUser = async () => {
+    await dispatch(followUserHandler({ token, followUserId: username }));
+  };
+
+  const handleUnfollowUser = async () => {
+    await dispatch(unFollowUserHandler({ token, followUserId: username }));
+  };
+
+  return userDetails.username !== userId ? (
     <Loading />
   ) : (
-    <div>
+    <>
       <div className="profilescreen flex--column secondary__font">
-        <div className="profile__banner flex--row">
+        <div className="profile__banner flex--column">
           <img className="profile__image" src={profileImg} alt="not found" />
         </div>
-        <button
-          className="edit__button secondary__font"
-          onClick={() => setIsModal("Edit")}
-        >
-          Edit
-        </button>
         <h1 className="profile__username">@{username}</h1>
         <div className="profile__name flex--row heading4">
           <h1 className="profile__first-name">{firstName}</h1>
@@ -74,16 +75,33 @@ const ProfileScreen = () => {
         >
           Portfolio <span className="material-icons">open_in_new</span>
         </a>
-        <div className="profile__follow-details heading5 flex--row">
+        <div className="userprofile__follow-details heading5 flex--row">
           <h1
             className="profile__following"
-            onClick={() => setIsModal("Following")}
+            onClick={() => setListModal("Following")}
           >
             {following?.length} Following
           </h1>
+          <div>
+            {followers.some((user) => user.username === currUser.username) ? (
+              <button
+                className="unfollow-btn"
+                onClick={() => handleUnfollowUser()}
+              >
+                Unfollow
+              </button>
+            ) : (
+              <button
+                className="suggestion__follow-btn"
+                onClick={() => handleFollowUser()}
+              >
+                Follow
+              </button>
+            )}
+          </div>
           <h1
             className="profile__followers"
-            onClick={() => setIsModal("Followers")}
+            onClick={() => setListModal("Followers")}
           >
             {followers?.length} Followers
           </h1>
@@ -96,26 +114,19 @@ const ProfileScreen = () => {
               .map((post) => <FeedPostCard post={post} key={post._id} />)
               .reverse()}
       </div>
-      {isModal !== "" && (
+      {listModal !== "" && (
         <div className="list-modal__container flex--row">
           <div ref={ref}>
-            {isModal === "Edit" ? (
-              <EditUserModal
-                userDetails={userDetails}
-                setIsModal={setIsModal}
-              />
-            ) : (
-              <ListModal
-                listModal={isModal}
-                list={isModal === "Following" ? following : followers}
-                setListModal={setIsModal}
-              />
-            )}
+            <ListModal
+              listModal={listModal}
+              list={listModal === "Following" ? following : followers}
+              setListModal={setListModal}
+            />
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
-export { ProfileScreen };
+export { UserScreen };

@@ -1,0 +1,130 @@
+.edit__button {
+    position: absolute;
+    right: 1rem;
+    top: 22rem;
+    padding: 0.5rem 2rem;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+}
+
+.edit__button>span {
+    font-size: 1.8rem;
+    padding-right: 1rem;
+    vertical-align: middle;
+}
+
+.edit-profile__modal {
+    width: 40rem;
+    height: 40rem;
+    padding: 1rem;
+    background-color: var(--white-color);
+}
+
+.edit-modal__top {
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--hover-color);
+}
+
+.edit-modal__top>span {
+    align-self: flex-start;
+    margin-left: auto;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.edit-modal__top>span:hover {
+    color: var(--primary-color);
+}
+
+.modal__profile-img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: #9393ff;
+    border: 2px solid var(--primary-color);
+}
+
+.edit-modal__name {
+    padding: 1rem 0;
+    width: 100%;
+    gap: 1rem
+}
+
+.edit-modal__firstname,
+.edit-modal__lastname {
+    width: 50%;
+}
+
+.input__label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.input__small {
+    font-size: 1.7rem;
+    border-radius: 5px;
+    width: 94%;
+    padding: 5px;
+    margin: 5px 0;
+    outline: none;
+    border: 1px solid var(--black-color);
+    background-color: transparent;
+    color: var(--black-color);
+}
+
+.input__large {
+    font-size: 1.7rem;
+    border-radius: 5px;
+    width: 97%;
+    padding: 5px;
+    margin: 5px 0;
+    outline: none;
+    border: 1px solid var(--black-color);
+    background-color: transparent;
+    color: var(--black-color);
+}
+
+.input__textbox {
+    outline: none;
+    resize: none;
+    width: 94%;
+    height: 8rem;
+    border: 1px solid var(--black-color);
+    background-color: transparent;
+    color: var(--black-color);
+}
+
+.edit-modal__portfolio {
+    padding: 1rem 0;
+}
+
+.edit-modal__buttons {
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.modal__cancel,
+.modal__save {
+    width: 8rem;
+    padding: 5px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal__cancel {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.modal__save {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: #fff;
+}

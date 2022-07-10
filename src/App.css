@@ -16,6 +16,7 @@
     --tertiary-color: #f7b801;
     --hover-color: #d4d4ffb6;
     --background-color: #efefef;
+    --blur-color: #efefefb3;
 }
 
 .dark {
@@ -27,6 +28,7 @@
     --tertiary-color: #BA8AF9;
     --hover-color: #233446a0;
     --background-color: #202124;
+    --blur-color: #202124cc;
 }
 
 .App {
@@ -49,7 +51,6 @@
 }
 
 .toast__style {
-    margin-top: 5rem;
     font-family: var(--secondary-font);
     font-size: 1.4rem;
 }

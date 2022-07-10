@@ -1,13 +1,12 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const PrivateRoute = ({ children }) => {
-  let location = useLocation();
-  const { isAuth } = useSelector((store) => store.auth);
+const PrivateRoute = () => {
+  const { isAuth } = useSelector((state) => state.auth);
+  const location = useLocation();
 
   return isAuth ? (
-    children
+    <Outlet />
   ) : (
     <Navigate replace to="/signin" state={{ from: location }} />
   );

@@ -51,8 +51,8 @@ const authSlice = createSlice({
       localStorage.removeItem("AUTH_TOKEN");
       localStorage.removeItem("ASTROHOOD_USER");
       state.isAuth = false;
-      state.token = null;
-      state.currUser = null;
+      state.token = "";
+      state.currUser = {};
     },
   },
   extraReducers: (builder) => {

@@ -6,3 +6,8 @@ export { FeedPostList } from "./FeedPostList/FeedPostList";
 export { FeedSortOptions } from "./FeedSortOptions/FeedSortOptions";
 export { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 export { PostCommentCard } from "./PostCommentCard/PostCommentCard";
+export { UserCardSmall } from "./UserCardSmall/UserCardSmall";
+export { Suggestions } from "./Suggestions/Suggestions";
+export { ListModal } from "./ListModal/ListModal";
+export { EditUserModal } from "./EditUserModal/EditUserModal";
+export { Loading } from "./Loading/Loading";

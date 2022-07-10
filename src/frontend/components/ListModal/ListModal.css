@@ -1,0 +1,30 @@
+.list-modal {
+    width: 30rem;
+    padding: 2rem;
+    background-color: var(--white-color);
+}
+
+.list-modal__header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-color);
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.list-modal__header>span {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.list-modal__header>span:hover {
+    color: var(--primary-color);
+}
+
+
+.list__card {
+    padding: 5px 0;
+}
+
+.list__card:hover>h1 {
+    color: #ababab;
+}

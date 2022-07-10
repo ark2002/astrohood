@@ -50,16 +50,6 @@ export const users = [
         profileImg:
           "https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc2NTQ3MDUyMjU4MzM4NTIz/tony-stark-case-study-and-psychological-assessment.jpg",
       },
-      {
-        username: "stephenstrange",
-        profileImg:
-          "https://pyxis.nymag.com/v1/imgs/288/3b0/e54e4bfd4095f34eca92495317353abcb8-23-doctor-strange.rsquare.w700.jpg",
-      },
-      {
-        username: "steverogers",
-        profileImg:
-          "https://pyxis.nymag.com/v1/imgs/8fa/98e/3a01cd0da4f1558b478d5bf7a74e488f1d-05-evans-america.rsquare.w330.jpg",
-      },
     ],
   },
   {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteACommentHandler } from "../../slices";
 import { EditCommentModal } from "../EditCommentModal/EditCommentModal";
@@ -10,6 +11,7 @@ const PostCommentCard = ({ comment, postId }) => {
   const { profileImg, username, text, createdAt, _id } = comment;
   const { token, currUser } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const getIsCommentedByCurrentUser = () =>
@@ -20,17 +22,20 @@ const PostCommentCard = ({ comment, postId }) => {
     try {
       await dispatch(deleteACommentHandler({ token, commentId: _id, postId }));
       toast.success("Comment Deleted!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: true,
         theme: "dark",
       });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const userClickHandler = (username) => {
+    username === currUser.username
+      ? navigate("/profile")
+      : navigate(`/user/${username}`);
   };
 
   return (
@@ -41,11 +46,14 @@ const PostCommentCard = ({ comment, postId }) => {
             src={isCommentedByCurrentUser ? currUser.profileImg : profileImg}
             alt="profile__img"
             className="comment-profile--img"
+            onClick={() => userClickHandler(username)}
           />
         </div>
         <div className="commentCard__main flex--column">
           <div className="commentCard__top flex--row">
-            <h1 className="heading4">{username}</h1>
+            <h1 className="heading4" onClick={() => userClickHandler(username)}>
+              {username}
+            </h1>
             <div className="commentCard__subheadings flex--row">
               <p>|</p>
               <p>

@@ -7,6 +7,10 @@ export const signUpService = async (user) => {
       lastName: user.lastName,
       username: user.username,
       password: user.password,
+      portfolioLink: "https://adarshbalika.netlify.app",
+      bio: "Hey! I am new here",
+      profileImg:
+        "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
     });
     return data;
   } catch (error) {

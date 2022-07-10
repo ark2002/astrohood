@@ -1,5 +1,6 @@
 .profilescreen {
     align-items: center;
+    position: relative;
 }
 
 .profile__banner {
@@ -8,6 +9,7 @@
     background-color: var(--primary-color);
     border-bottom: 2px solid #fff;
     align-items: center;
+    justify-content: center;
 }
 
 .profile__image {
@@ -64,3 +66,9 @@
     font-weight: 600;
     color: var(--primary-color);
 }
+
+.profile__following,
+.profile__followers {
+    cursor: pointer;
+}
+

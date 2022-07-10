@@ -12,6 +12,7 @@ const ExploreScreen = () => {
   useEffect(() => {
     dispatch(getAllPostsHandler(token));
   }, [dispatch, token]);
+
   return (
     <div className="explorepage">
       {posts === []
