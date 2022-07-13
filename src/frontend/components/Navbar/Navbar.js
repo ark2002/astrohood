@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme, setTheme, signOutHandler } from "../../slices";
-import "./Navbar.css";
 import { toast } from "react-toastify";
 
+import { toggleTheme, setTheme, signOutHandler } from "../../slices";
+
+import "./Navbar.css";
+
 const Navbar = () => {
-  const [listVisibility, setListVisibility] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [listVisibility, setListVisibility] = useState(false);
 
   useEffect(() => {
     dispatch(setTheme(localStorage.getItem("THEME") ?? "dark"));

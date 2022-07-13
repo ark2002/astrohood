@@ -1,11 +1,15 @@
 import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { editUserDetailsHandler } from "../../slices";
+
 import "./EditUserModal.css";
 
 const EditUserModal = ({ userDetails, setIsModal }) => {
   const { profileImg, username } = userDetails;
+
   const dispatch = useDispatch();
+
   const { token } = useSelector((store) => store.auth);
 
   const [user, setUser] = useState({ ...userDetails });

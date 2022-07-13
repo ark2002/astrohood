@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import { followUserHandler, makeSuggestions } from "../../slices";
 import { getUnfollowedUsers } from "../../utils";
+
 import "./UserCardSmall.css";
 
 const UserCardSmall = ({ user }) => {

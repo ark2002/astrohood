@@ -1,14 +1,18 @@
-import "./EditCommentModal.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { editACommentHandler } from "../../slices";
 
+import "./EditCommentModal.css";
+
 const EditCommentModal = ({ comment, postId, setEditModalOpen }) => {
+  const dispatch = useDispatch();
+
+  const { token, currUser } = useSelector((store) => store.auth);
+
   const [commentContent, setCommentContent] = useState(comment.text);
   const [charCount, setCharCount] = useState();
-  const dispatch = useDispatch();
-  const { token, currUser } = useSelector((store) => store.auth);
 
   const handleCommentContent = (event) => {
     const content = event.target.value;

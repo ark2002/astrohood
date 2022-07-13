@@ -1,8 +1,10 @@
-import "./NewPostCard.css";
-import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import { useDispatch, useSelector } from "react-redux";
+
 import { createNewPostHandler } from "../../slices/postsSlice";
+
+import "./NewPostCard.css";
 
 const NewPostCard = () => {
   const [postContent, setPostContent] = useState("");

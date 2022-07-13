@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getBookmarkedHandler } from "../../slices";
 import { FeedPostCard } from "../FeedPostCard/FeedPostCard";
+
 import "./BookmarkPostList.css";
 
 const BookmarkPostList = () => {
   const dispatch = useDispatch();
+
   const { token } = useSelector((store) => store.auth);
+  const { posts } = useSelector((store) => store.post);
+  const { bookmarks } = useSelector((store) => store.post);
+
   const [bookmarkedPosts, setBookmarkedPosts] = useState([]);
 
   useEffect(() => {
     dispatch(getBookmarkedHandler(token));
   }, [dispatch, token]);
-
-  const { posts } = useSelector((store) => store.post);
-  const { bookmarks } = useSelector((store) => store.post);
 
   useEffect(
     () =>

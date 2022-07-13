@@ -1,10 +1,11 @@
-import "./Main.css";
-
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
+
 import { SidebarMenu } from "../SidebarMenu/SidebarMenu";
 import { Suggestions } from "../Suggestions/Suggestions";
 import { Router } from "../../router/Router";
+
+import "./Main.css";
 
 const Main = () => {
   const { isAuth } = useSelector((store) => store.auth);

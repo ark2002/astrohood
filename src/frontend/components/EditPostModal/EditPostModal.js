@@ -1,14 +1,18 @@
-import "./EditPostModal.css";
-import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import { useDispatch, useSelector } from "react-redux";
+
 import { editPostHandler } from "../../slices";
 
+import "./EditPostModal.css";
+
 const EditPostModal = ({ post, setEditModalOpen }) => {
+  const dispatch = useDispatch();
+
+  const { token, currUser } = useSelector((store) => store.auth);
+
   const [postContent, setPostContent] = useState(post.content);
   const [charCount, setCharCount] = useState();
-  const dispatch = useDispatch();
-  const { token, currUser } = useSelector((store) => store.auth);
 
   const handlePostText = (event) => {
     const content = event.target.value;

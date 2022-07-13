@@ -2,22 +2,25 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPostsHandler } from "../../slices";
 import { getUserDetails } from "../../utils";
+
 import { FeedPostCard } from "../FeedPostCard/FeedPostCard";
+
 import "./FeedPostList.css";
 
 const FeedPostList = () => {
   const dispatch = useDispatch();
+
   const { token } = useSelector((store) => store.auth);
+  const { posts, sortPostsBy } = useSelector((store) => store.post);
+  const { currUser } = useSelector((store) => store.auth);
+  const { allUsers } = useSelector((store) => store.user);
+
   const [sortedPosts, setSortedPosts] = useState([]);
   const [feedPosts, setFeedPosts] = useState([]);
 
   useEffect(() => {
     dispatch(getAllPostsHandler(token));
   }, [dispatch, token]);
-
-  const { posts, sortPostsBy } = useSelector((store) => store.post);
-  const { currUser } = useSelector((store) => store.auth);
-  const { allUsers } = useSelector((store) => store.user);
 
   useEffect(() => {
     const usersDetails = getUserDetails(allUsers, currUser.username);

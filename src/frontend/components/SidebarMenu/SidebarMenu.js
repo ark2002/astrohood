@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import "./SidebarMenu.css";
 
 const SidebarMenu = () => {
+  const { isAuth } = useSelector((store) => store.auth);
+
   const optionSelected = ({ isActive }) => {
     return "sidebar__option" + (isActive ? "--selected" : "") + " flex--row";
   };
-
-  const { isAuth } = useSelector((store) => store.auth);
 
   return (
     isAuth && (

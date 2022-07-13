@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { useOnClickOutside } from "../../hooks";
 import { getCommentsService } from "../../services";
 import {
@@ -13,6 +14,7 @@ import {
   unlikeAPostHandler,
 } from "../../slices";
 import { EditPostModal } from "../EditPostModal/EditPostModal";
+
 import "./FeedPostCard.css";
 
 const FeedPostCard = ({ post }) => {
