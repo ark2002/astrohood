@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { signInHandler } from "../../slices";
 
 import "./SignInScreen.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function SignInScreen() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
+
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
 
   const [passwordToggle, setPasswordToggle] = useState(false);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
-
   const handleSignIn = async (user) => {
     try {
       const response = await dispatch(signInHandler(user));

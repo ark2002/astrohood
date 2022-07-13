@@ -1,4 +1,5 @@
 import { FeedPostList, FeedSortOptions, NewPostCard } from "../../components";
+
 import "./FeedScreen.css";
 
 const FeedScreen = () => {

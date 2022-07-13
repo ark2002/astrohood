@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { FeedPostCard, ListModal, Loading } from "../../components";
 import { useOnClickOutside } from "../../hooks";
 import {
@@ -8,27 +9,19 @@ import {
   getSingleUserHandler,
   unFollowUserHandler,
 } from "../../slices";
+
 import "./UserScreen.css";
 
 const UserScreen = () => {
-  const [userPosts, setUserPosts] = useState([]);
-  const [listModal, setListModal] = useState("");
-
   const dispatch = useDispatch();
   const ref = useRef();
   const { userId } = useParams();
-
-  useOnClickOutside(ref, () => setListModal(""));
 
   const { token, currUser } = useSelector((store) => store.auth);
   const { allUsers, userDetails } = useSelector((store) => store.user);
   const { posts } = useSelector((store) => store.post);
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(getSingleUserHandler({ token, username: userId }));
-    })();
-  }, [allUsers, dispatch, token, userId]);
+  useOnClickOutside(ref, () => setListModal(""));
 
   const {
     profileImg,
@@ -40,6 +33,15 @@ const UserScreen = () => {
     followers,
     portfolioLink,
   } = userDetails;
+
+  const [userPosts, setUserPosts] = useState([]);
+  const [listModal, setListModal] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(getSingleUserHandler({ token, username: userId }));
+    })();
+  }, [allUsers, dispatch, token, userId]);
 
   useEffect(() => {
     setUserPosts(posts.filter((post) => post.username === userId));
