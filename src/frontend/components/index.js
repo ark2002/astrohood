@@ -1,3 +1,4 @@
+export { Main } from "./Main/Main";
 export { Navbar } from "./Navbar/Navbar";
 export { SidebarMenu } from "./SidebarMenu/SidebarMenu";
 export { FeedPostCard } from "./FeedPostCard/FeedPostCard";
