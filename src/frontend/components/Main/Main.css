@@ -1,0 +1,21 @@
+.division__container>.router {
+    margin-left: 25rem;
+    width: 70rem;
+    border-left: 2px solid var(--gray-color);
+    border-right: 2px solid var(--gray-color);
+
+}
+
+.division__container {
+    width: 98vw;
+}
+
+.router {
+    min-height: 90vh;
+    padding: 1rem;
+}
+
+.toast__style {
+    font-family: var(--secondary-font);
+    font-size: 1.4rem;
+}
