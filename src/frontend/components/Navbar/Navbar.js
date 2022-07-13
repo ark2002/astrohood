@@ -5,7 +5,7 @@ import { toggleTheme, setTheme, signOutHandler } from "../../slices";
 import "./Navbar.css";
 import { toast } from "react-toastify";
 
-function Navbar() {
+const Navbar = () => {
   const [listVisibility, setListVisibility] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,16 +40,6 @@ function Navbar() {
             <h2 className="header__logo">AstroHood</h2>
           </div>
         </NavLink>
-        <div className="navbar__search-container flex--row">
-          <input
-            type="text"
-            className="navbar__search input__txt"
-            placeholder="Search"
-          />
-          <button className="navbar__search-btn btn">
-            <span className="material-icons search__btn-icon">search</span>
-          </button>
-        </div>
         <nav className="navbar__nav flex--row">
           <ul>
             <li onClick={() => dispatch(toggleTheme())}>
@@ -94,6 +84,6 @@ function Navbar() {
         ))}
     </>
   );
-}
+};
 
 export { Navbar };
