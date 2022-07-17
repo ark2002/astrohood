@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { followUserHandler, makeSuggestions } from "../../slices";
 import { getUnfollowedUsers } from "../../utils";
@@ -19,6 +20,12 @@ const UserCardSmall = ({ user }) => {
     await dispatch(followUserHandler({ token, followUserId: username }));
     const unfollowedUsers = getUnfollowedUsers(allUsers, currUser.username);
     await dispatch(makeSuggestions(unfollowedUsers));
+    toast.success(`Followed ${username} !`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
   };
 
   return (
