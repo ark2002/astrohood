@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { FeedPostCard, ListModal, Loading } from "../../components";
 import { useOnClickOutside } from "../../hooks";
@@ -49,10 +50,22 @@ const UserScreen = () => {
 
   const handleFollowUser = async () => {
     await dispatch(followUserHandler({ token, followUserId: username }));
+    toast.success(`Followed ${username} !`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
   };
 
   const handleUnfollowUser = async () => {
     await dispatch(unFollowUserHandler({ token, followUserId: username }));
+    toast.info(`Unfollowed ${username} !`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
   };
 
   return userDetails.username !== userId ? (
