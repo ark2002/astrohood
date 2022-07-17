@@ -8,6 +8,10 @@
     z-index: 3;
 }
 
+li:hover>.dropdown-list{
+    font-weight: 400;
+}
+
 .search__btn-icon {
     color: var(--white-color);
     background-color: var(--primary-color);
