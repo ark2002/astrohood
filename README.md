@@ -51,7 +51,7 @@ https://user-images.githubusercontent.com/67817330/179525880-dad9277d-acee-40c0-
 
 ## Tech Stack
 
-**Client:** React, Redux Toolkit, React Redux, React Router, React Moment, React Hot Toast, Tailwind CSS
+**Client:** React, Redux Toolkit, React Redux, React Router, React Moment, React Hot Toast, [Astro UI](https://astro-ui.netlify.app/)
 
 **Server:** Mockbee (Mock Backend)
 
