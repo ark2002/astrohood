@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { sortPostsHandler } from "../../slices";
+
 import "./FeedSortOptions.css";
 
 const FeedSortOptions = () => {
   const dispatch = useDispatch();
+
   const { sortPostsBy } = useSelector((store) => store.post);
 
   const sortHandler = (selectedSort) => {

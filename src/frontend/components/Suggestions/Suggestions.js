@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getAllUsersHandler, makeSuggestions } from "../../slices";
 import { getUnfollowedUsers } from "../../utils";
 import { UserCardSmall } from "../UserCardSmall/UserCardSmall";
+
 import "./Suggestions.css";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
+  
   const { currUser, token } = useSelector((store) => store.auth);
   const { allUsers, suggestions } = useSelector((store) => store.user);
 

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import "./ListModal.css";
 
 const ListModal = ({ listModal, list, setListModal }) => {

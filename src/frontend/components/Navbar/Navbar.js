@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme, setTheme, signOutHandler } from "../../slices";
-import "./Navbar.css";
 import { toast } from "react-toastify";
 
-function Navbar() {
-  const [listVisibility, setListVisibility] = useState(false);
+import { toggleTheme, setTheme, signOutHandler } from "../../slices";
+
+import "./Navbar.css";
+import { useOnClickOutside } from "../../hooks";
+
+const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => setListVisibility(false));
+
+  const [listVisibility, setListVisibility] = useState(false);
 
   useEffect(() => {
     dispatch(setTheme(localStorage.getItem("THEME") ?? "dark"));
@@ -40,16 +47,6 @@ function Navbar() {
             <h2 className="header__logo">AstroHood</h2>
           </div>
         </NavLink>
-        <div className="navbar__search-container flex--row">
-          <input
-            type="text"
-            className="navbar__search input__txt"
-            placeholder="Search"
-          />
-          <button className="navbar__search-btn btn">
-            <span className="material-icons search__btn-icon">search</span>
-          </button>
-        </div>
         <nav className="navbar__nav flex--row">
           <ul>
             <li onClick={() => dispatch(toggleTheme())}>
@@ -63,7 +60,7 @@ function Navbar() {
                 </span>
               )}
             </li>
-            <li onClick={() => setListVisibility(!listVisibility)}>
+            <li ref={ref} onClick={() => setListVisibility(!listVisibility)}>
               <span className="material-icons account-icon" title="Account">
                 account_circle
               </span>
@@ -71,29 +68,35 @@ function Navbar() {
                 {currUser !== null ? currUser.username : ""}
               </span>
               ▼
+              {listVisibility &&
+                (!isAuth ? (
+                  <div className="dropdown-list secondary__font text__small">
+                    <NavLink
+                      to="/signin"
+                      onClick={() => setListVisibility(false)}
+                    >
+                      <li>Sign-In</li>
+                    </NavLink>
+                    <NavLink
+                      to="/signup"
+                      onClick={() => setListVisibility(false)}
+                    >
+                      <li>Sign-Up</li>
+                    </NavLink>
+                  </div>
+                ) : (
+                  <div className="dropdown-list secondary__font text__small">
+                    <NavLink to="/">
+                      <li onClick={() => handleSignOut()}>Log-Out</li>
+                    </NavLink>
+                  </div>
+                ))}
             </li>
           </ul>
         </nav>
       </header>
-      {listVisibility &&
-        (!isAuth ? (
-          <div className="dropdown-list secondary__font text__small">
-            <NavLink to="/signin" onClick={() => setListVisibility(false)}>
-              <li>Sign-In</li>
-            </NavLink>
-            <NavLink to="/signup" onClick={() => setListVisibility(false)}>
-              <li>Sign-Up</li>
-            </NavLink>
-          </div>
-        ) : (
-          <div className="dropdown-list secondary__font text__small">
-            <NavLink to="/">
-              <li onClick={() => handleSignOut()}>Log-Out</li>
-            </NavLink>
-          </div>
-        ))}
     </>
   );
-}
+};
 
 export { Navbar };

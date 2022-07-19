@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import { FeedPostCard, ListModal, Loading } from "../../components";
 import { useOnClickOutside } from "../../hooks";
 import {
@@ -8,27 +10,19 @@ import {
   getSingleUserHandler,
   unFollowUserHandler,
 } from "../../slices";
+
 import "./UserScreen.css";
 
 const UserScreen = () => {
-  const [userPosts, setUserPosts] = useState([]);
-  const [listModal, setListModal] = useState("");
-
   const dispatch = useDispatch();
   const ref = useRef();
   const { userId } = useParams();
-
-  useOnClickOutside(ref, () => setListModal(""));
 
   const { token, currUser } = useSelector((store) => store.auth);
   const { allUsers, userDetails } = useSelector((store) => store.user);
   const { posts } = useSelector((store) => store.post);
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(getSingleUserHandler({ token, username: userId }));
-    })();
-  }, [allUsers, dispatch, token, userId]);
+  useOnClickOutside(ref, () => setListModal(""));
 
   const {
     profileImg,
@@ -41,16 +35,37 @@ const UserScreen = () => {
     portfolioLink,
   } = userDetails;
 
+  const [userPosts, setUserPosts] = useState([]);
+  const [listModal, setListModal] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(getSingleUserHandler({ token, username: userId }));
+    })();
+  }, [allUsers, dispatch, token, userId]);
+
   useEffect(() => {
     setUserPosts(posts.filter((post) => post.username === userId));
   }, [allUsers, currUser, following, posts, userId]);
 
   const handleFollowUser = async () => {
     await dispatch(followUserHandler({ token, followUserId: username }));
+    toast.success(`Followed ${username} !`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
   };
 
   const handleUnfollowUser = async () => {
     await dispatch(unFollowUserHandler({ token, followUserId: username }));
+    toast.info(`Unfollowed ${username} !`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
   };
 
   return userDetails.username !== userId ? (

@@ -3,15 +3,20 @@ import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { deleteACommentHandler } from "../../slices";
 import { EditCommentModal } from "../EditCommentModal/EditCommentModal";
+
 import "./PostCommentCard.css";
 
 const PostCommentCard = ({ comment, postId }) => {
   const { profileImg, username, text, createdAt, _id } = comment;
-  const { token, currUser } = useSelector((store) => store.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { token, currUser } = useSelector((store) => store.auth);
+  
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const getIsCommentedByCurrentUser = () =>

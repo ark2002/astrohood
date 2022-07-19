@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   EditUserModal,
   FeedPostCard,
@@ -8,11 +9,10 @@ import {
 } from "../../components";
 import { useOnClickOutside } from "../../hooks";
 import { getAllPostsHandler, getSingleUserHandler } from "../../slices";
+
 import "./ProfileScreen.css";
 
 const ProfileScreen = () => {
-  const [userPosts, setUserPosts] = useState([]);
-  const [isModal, setIsModal] = useState("");
   const dispatch = useDispatch();
   const ref = useRef();
 
@@ -20,16 +20,10 @@ const ProfileScreen = () => {
   const { allUsers, userDetails } = useSelector((store) => store.user);
   const { posts } = useSelector((store) => store.post);
 
-  useOnClickOutside(ref, () => setIsModal(""));
+  const [userPosts, setUserPosts] = useState([]);
+  const [isModal, setIsModal] = useState("");
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(getAllPostsHandler(token));
-      await dispatch(
-        getSingleUserHandler({ token, username: currUser.username })
-      );
-    })();
-  }, [currUser, dispatch, token, allUsers]);
+  useOnClickOutside(ref, () => setIsModal(""));
 
   const {
     profileImg,
@@ -41,6 +35,15 @@ const ProfileScreen = () => {
     followers,
     portfolioLink,
   } = userDetails;
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(getAllPostsHandler(token));
+      await dispatch(
+        getSingleUserHandler({ token, username: currUser.username })
+      );
+    })();
+  }, [currUser, dispatch, token, allUsers]);
 
   useEffect(() => {
     setUserPosts(posts.filter((post) => post.username === currUser.username));

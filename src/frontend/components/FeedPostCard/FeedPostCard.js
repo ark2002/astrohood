@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { useOnClickOutside } from "../../hooks";
 import { getCommentsService } from "../../services";
 import {
@@ -13,6 +14,7 @@ import {
   unlikeAPostHandler,
 } from "../../slices";
 import { EditPostModal } from "../EditPostModal/EditPostModal";
+
 import "./FeedPostCard.css";
 
 const FeedPostCard = ({ post }) => {
@@ -143,17 +145,38 @@ const FeedPostCard = ({ post }) => {
                   <Moment fromNow>{createdAt}</Moment>
                 </p>
               </div>
-              {isPostedByCurrentUser && (
-                <span
-                  className="material-icons"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOptionModalOpen(!optionModalOpen);
-                  }}
-                >
-                  more_vert
-                </span>
-              )}
+              <div className="flex--row fd-postcard__modal-btn" ref={ref}>
+                {isPostedByCurrentUser && (
+                  <span
+                    className="material-icons"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOptionModalOpen(!optionModalOpen);
+                    }}
+                  >
+                    more_vert
+                  </span>
+                )}
+                {optionModalOpen && (
+                  <div className="options__modal flex--column secondary__Font">
+                    <p
+                      className="modal__options"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditModalOpen(true);
+                      }}
+                    >
+                      Edit
+                    </p>
+                    <p
+                      className="modal__options"
+                      onClick={(e) => deleteCurrentPostHandler(e)}
+                    >
+                      Delete
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="fd-postcard__content">{content}</div>
             <div className="fd-postcard__options flex--row">
@@ -207,28 +230,6 @@ const FeedPostCard = ({ post }) => {
             </div>
           </div>
         </div>
-        {optionModalOpen && (
-          <div
-            className="options__modal flex--column secondary__Font"
-            ref={ref}
-          >
-            <p
-              className="modal__options"
-              onClick={(e) => {
-                e.stopPropagation();
-                setEditModalOpen(true);
-              }}
-            >
-              Edit
-            </p>
-            <p
-              className="modal__options"
-              onClick={(e) => deleteCurrentPostHandler(e)}
-            >
-              Delete
-            </p>
-          </div>
-        )}
       </div>
       {editModalOpen && (
         <div

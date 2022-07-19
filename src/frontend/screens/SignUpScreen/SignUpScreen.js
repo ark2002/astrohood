@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { signUpHandler } from "../../slices";
 
 import "./SignUpScreen.css";
 
 function SignUpScreen() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
+
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -14,11 +21,6 @@ function SignUpScreen() {
     password: "",
   });
   const [visibilityToggle, setVisibilityToggle] = useState(false);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
 
   const handleSignUp = async (user) => {
     try {

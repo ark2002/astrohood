@@ -3,20 +3,24 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
+
 import { FeedPostCard, PostCommentCard } from "../../components";
 import { getCommentsService } from "../../services";
 import { createACommentHandler } from "../../slices";
+
 import "./PostScreen.css";
 
 const PostScreen = () => {
+  const { postId } = useParams();
+  const dispatch = useDispatch();
+
+  const { posts } = useSelector((store) => store.post);
+  const { token, currUser } = useSelector((store) => store.auth);
+
   const [currPost, setCurrPost] = useState(null);
   const [commentContent, setCommentContent] = useState("");
   const [comments, setComments] = useState([]);
   const [charCount, setCharCount] = useState();
-  const { postId } = useParams();
-  const dispatch = useDispatch();
-  const { posts } = useSelector((store) => store.post);
-  const { token, currUser } = useSelector((store) => store.auth);
 
   useEffect(() => {
     (async () => {
