@@ -26,10 +26,14 @@
 .password-field {
     align-items: center;
     gap: 1rem;
+    border: 1px solid var(--gray-color);
+    border-radius: 5px;
+    padding-right: 10px;
 }
 
 .password-field>input.password {
     width: 100%;
+    border: none;
 }
 
 .password-field>:last-child {

@@ -197,11 +197,6 @@ export const users = [
       "https://pyxis.nymag.com/v1/imgs/8fa/98e/3a01cd0da4f1558b478d5bf7a74e488f1d-05-evans-america.rsquare.w330.jpg",
     followers: [
       {
-        username: "farhanquareshi",
-        profileImg:
-          "https://www.personality-database.com/profile_images/39642.png",
-      },
-      {
         username: "stephenstrange",
         profileImg:
           "https://pyxis.nymag.com/v1/imgs/288/3b0/e54e4bfd4095f34eca92495317353abcb8-23-doctor-strange.rsquare.w700.jpg",

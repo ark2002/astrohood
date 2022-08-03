@@ -83,7 +83,7 @@ function SignUpScreen() {
         <div className="flex--row password-field">
           <input
             type={visibilityToggle ? "text" : "password"}
-            placeholder="password"
+            placeholder="Password"
             className="input__txt password secondary__font"
             minLength="8"
             required
@@ -93,7 +93,8 @@ function SignUpScreen() {
           <span
             className="material-icons"
             title={visibilityToggle ? "hide password" : "show password"}
-            onClick={() => setVisibilityToggle(!visibilityToggle)}
+            onMouseDown={() => setVisibilityToggle(true)}
+            onMouseUp={() => setVisibilityToggle(false)}
           >
             {visibilityToggle ? "visibility" : "visibility_off"}
           </span>
@@ -101,12 +102,28 @@ function SignUpScreen() {
         <button className="btn btn-color--tertiary btn-font--secondary">
           Sign-up
         </button>
-        <Link
-          to="/signin"
-          className="btn btn-transparent--primary btn-font--secondary text__small"
-        >
-          Existing account
-        </Link>
+        <div className="login__bottom-container flex--row">
+          <Link
+            to="/signin"
+            className="btn btn-color--primary btn-font--secondary text__small"
+          >
+            Existing account
+          </Link>
+          <span
+            className="btn btn-transparent--primary btn-font--secondary text__small"
+            onClick={(e) => {
+              e.stopPropagation();
+              setUser({
+                firstName: "Random",
+                lastName: "User",
+                username: "randomuser",
+                password: "randomuser123",
+              });
+            }}
+          >
+            Dummy Data
+          </span>
+        </div>
       </form>
     </div>
   );
