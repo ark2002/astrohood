@@ -69,7 +69,7 @@ function SignInScreen() {
           <div className="flex--row password-field">
             <input
               type={passwordToggle ? "text" : "password"}
-              placeholder="password"
+              placeholder="Password"
               className="input__txt password secondary__font"
               minLength="8"
               required
@@ -79,16 +79,11 @@ function SignInScreen() {
             <span
               className="material-icons"
               title={passwordToggle ? "hide password" : "show password"}
-              onClick={() => setPasswordToggle(!passwordToggle)}
+              onMouseDown={() => setPasswordToggle(true)}
+              onMouseUp={() => setPasswordToggle(false)}
             >
               {passwordToggle ? "visibility" : "visibility_off"}
             </span>
-          </div>{" "}
-          <div className="rememberme flex--row">
-            <input type="checkbox" name="remember-me" id="remember-me" />
-            <label htmlFor="remember-me" className="secondary__font">
-              Remember Me
-            </label>
           </div>
           <button
             type="submit"
@@ -116,12 +111,6 @@ function SignInScreen() {
               Guest Login
             </button>
           </div>
-          <Link
-            to="/signin"
-            className="secondary__font text__small forgotpassword"
-          >
-            Forgot Password
-          </Link>
         </form>
       </div>
     </>
