@@ -109,7 +109,7 @@ const PostScreen = () => {
               postId={postId}
               key={comment._id}
             />
-          ))}
+          )).reverse()}
       </div>
     )
   );
