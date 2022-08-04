@@ -19,7 +19,7 @@ const EditPostModal = ({ post, setEditModalOpen }) => {
     if (!content) {
       setCharCount(null);
     } else {
-      setCharCount(250 - content.trim().length);
+      setCharCount(250 - content.length);
     }
     setPostContent(content);
   };
