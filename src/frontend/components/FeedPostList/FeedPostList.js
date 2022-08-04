@@ -23,12 +23,10 @@ const FeedPostList = () => {
 
   useEffect(() => {
     setFeedPosts(
-      posts.filter((post) =>
-        currUser.following.find(
-          (user) =>
-            user.username === post.username ||
-            post.username === currUser.username
-        )
+      posts.filter(
+        (post) =>
+          currUser.following.find((user) => user.username === post.username) ||
+          post.username === currUser.username
       )
     );
   }, [allUsers, currUser, posts]);
