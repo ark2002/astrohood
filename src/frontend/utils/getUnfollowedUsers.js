@@ -1,10 +1,8 @@
-import { getFollowing } from "./getFollowing";
-
 export const getUnfollowedUsers = (users, username) => {
-  const followingUsers = getFollowing(users, username);
+  const followingUsers = username.following;
 
   const unfollowedUsers = users?.filter((listItem) =>
-    username === listItem.username
+    username.username === listItem.username
       ? false
       : followingUsers?.find(
           (followedUser) => followedUser.username === listItem.username

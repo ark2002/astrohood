@@ -221,12 +221,12 @@ const FeedPostCard = ({ post }) => {
                   bookmark_border
                 </span>
               )}
-              <span
+              {/* <span
                 className="material-icons option--share"
                 onClick={(e) => e.stopPropagation()}
               >
                 ios_share
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

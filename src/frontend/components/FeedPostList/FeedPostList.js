@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPostsHandler } from "../../slices";
-import { getUserDetails } from "../../utils";
 
 import { FeedPostCard } from "../FeedPostCard/FeedPostCard";
 
@@ -23,14 +22,11 @@ const FeedPostList = () => {
   }, [dispatch, token]);
 
   useEffect(() => {
-    const usersDetails = getUserDetails(allUsers, currUser.username);
     setFeedPosts(
-      posts.filter((post) =>
-        usersDetails?.following.find(
-          (user) =>
-            user.username === post.username ||
-            post.username === currUser.username
-        )
+      posts.filter(
+        (post) =>
+          currUser.following.find((user) => user.username === post.username) ||
+          post.username === currUser.username
       )
     );
   }, [allUsers, currUser, posts]);

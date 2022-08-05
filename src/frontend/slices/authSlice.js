@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { signInService, signUpService } from "../services";
+import { followUserHandler, unFollowUserHandler } from "./userSlice";
 
 const initialState = {
   isAuth: localStorage.getItem("AUTH_TOKEN") ? true : false,
@@ -87,6 +88,12 @@ const authSlice = createSlice({
       .addCase(signUpHandler.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(followUserHandler.fulfilled, (state, action) => {
+        state.currUser = action.payload.user;
+      })
+      .addCase(unFollowUserHandler.fulfilled, (state, action) => {
+        state.currUser = action.payload.user;
       });
   },
 });

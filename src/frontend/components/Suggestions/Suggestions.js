@@ -9,7 +9,7 @@ import "./Suggestions.css";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
-  
+
   const { currUser, token } = useSelector((store) => store.auth);
   const { allUsers, suggestions } = useSelector((store) => store.user);
 
@@ -22,7 +22,7 @@ const Suggestions = () => {
   }, [allUsers.length, dispatch, token]);
 
   useEffect(() => {
-    const unfollowedUsers = getUnfollowedUsers(allUsers, currUser.username);
+    const unfollowedUsers = getUnfollowedUsers(allUsers, currUser);
     dispatch(makeSuggestions(unfollowedUsers));
   }, [allUsers, currUser, dispatch]);
 
